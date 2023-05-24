@@ -1,10 +1,31 @@
 
 
 let apiQuotes = [];
+let quoteContainer = document.querySelector("#quote-container")
 let authorDocument = document.querySelector("#author")
 let quoteDocument = document.querySelector("#quote")
 let buttonDocument = document.querySelector("#new-quote")
 let twitterDocument = document.querySelector("#twitter")
+let load = document.querySelector("#lds-spinner")
+
+
+
+
+
+
+// load
+function loadOn(){
+    quoteContainer.classList.add("hidden")
+    load.classList.remove("hidden")
+    loadOf()
+    
+}
+function loadOf(){
+    setTimeout(()=>{
+        quoteContainer.classList.remove("hidden")
+        load.classList.add("hidden")
+    }
+    ,'300')}
 
 
 // show new Quotes
@@ -16,6 +37,8 @@ function newQuotes(){
 
     // next quotes
     buttonDocument.addEventListener("click",e=>{
+        loadOn()
+
         quote = apiQuotes[Math.floor(Math.random()*apiQuotes.length)]
         quoteDocument.innerText = quote.text
         authorDocument.innerText = quote.author
